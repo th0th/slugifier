@@ -13,11 +13,20 @@ import {
 } from '@/common/style';
 
 const Wrapper = styled.div`
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
   width: 600px;
   max-width: 100%;
 
   margin: auto;
-  padding: 40px;
+  padding: 0 40px;
+`;
+
+const Content = styled.div`
 `;
 
 const Input = styled.input`
@@ -108,46 +117,48 @@ export default class Slugifier extends React.Component {
 
     return (
       <Wrapper>
-        <Input
-          type="text"
-          name="input"
-          placeholder="Paste your title here"
-          value={input}
-          onChange={event => this.setState({ input: event.target.value })}
-        />
-
-        <Output
-          onClick={this.copy}
-          data-tip
-          data-for="tooltip-output-copy"
-          isReady={input !== ''}
-        >
-          <p>
-            {input !== '' ? slugify(input, {
-              lower: true,
-            }) : (
-              <span>
-                url-slug-goes-here
-              </span>
-            )}
-          </p>
-
-          <textarea
-            ref={this.textarea}
-            value={slugify(input, {
-              lower: true,
-            })}
-            readOnly
+        <Content>
+          <Input
+            type="text"
+            name="input"
+            placeholder="Paste your title here"
+            value={input}
+            onChange={event => this.setState({ input: event.target.value })}
           />
-        </Output>
 
-        {input !== '' && (
-          <Tooltip
-            id="tooltip-output-copy"
+          <Output
+            onClick={this.copy}
+            data-tip
+            data-for="tooltip-output-copy"
+            isReady={input !== ''}
           >
-            {isCopied ? 'Done!' : 'Copy'}
-          </Tooltip>
-        )}
+            <p>
+              {input !== '' ? slugify(input, {
+                lower: true,
+              }) : (
+                <span>
+                  url-slug-goes-here
+                </span>
+              )}
+            </p>
+
+            <textarea
+              ref={this.textarea}
+              value={slugify(input, {
+                lower: true,
+              })}
+              readOnly
+            />
+          </Output>
+
+          {input !== '' && (
+            <Tooltip
+              id="tooltip-output-copy"
+            >
+              {isCopied ? 'Done!' : 'Copy'}
+            </Tooltip>
+          )}
+        </Content>
       </Wrapper>
     );
   }

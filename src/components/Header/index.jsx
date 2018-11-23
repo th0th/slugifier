@@ -36,8 +36,6 @@ const Nav = styled.nav`
 
   margin: auto;
 
-  padding: 20px 40px;
-
   & > ul {
     display: flex;
     flex-direction: row;
