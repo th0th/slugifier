@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: '/slugifier',
   siteMetadata: {
     title: 'Slugifier',
   },
